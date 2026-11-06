@@ -23,7 +23,9 @@ jobs:
       - name: Pack game files into www (3D + multiplayer libraries bundled inside the app)
         run: |
           mkdir -p www
-          cp index.html icon-192.png icon-512.png www/
+          cp shiba-pages/index.html
+          shiba-pages/icon-192.png
+          shiba-pages/icon-512.png www/
           curl -fsSL -o www/three.min.js https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js
           curl -fsSL -o www/peerjs.min.js https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js
           test $(wc -c < www/three.min.js) -gt 100000
@@ -60,7 +62,7 @@ jobs:
           python3 - <<'PY'
           import os
           from PIL import Image
-          src = Image.open('icon-512.png').convert('RGBA')
+          src = Image.open('shiba-pages/icon-512.png').convert('RGBA')
           sizes = {'mdpi': (48, 108), 'hdpi': (72, 162), 'xhdpi': (96, 216), 'xxhdpi': (144, 324), 'xxxhdpi': (192, 432)}
           for d, (n, f) in sizes.items():
               p = f'android/app/src/main/res/mipmap-{d}'
